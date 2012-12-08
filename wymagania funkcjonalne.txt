@@ -1,0 +1,16 @@
+wymagania funkcjonalne:
+
+-przegladanie zapisanych adresow 
+-przegladnie mapy
+-wyszukiwanie adresow
+-nawigacja myszka/klawiatura - opcjonalnie
+-zapamietywanie adresow
+-udostepnianie zapisanych adresow uzytkownika
+-logowanie
+-rejestracja
+-nlp zapytania w stylu "show me my bank"
+
+dodatkowe moduly do django:
+	-django-easy-maps
+	-modul do ajaxa : django-dajaxice
+	-modul do nlp  - nltk
