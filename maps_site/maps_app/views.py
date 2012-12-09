@@ -1,8 +1,11 @@
 # Create your views here.
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.http import HttpResponse
 
-def register(request):
-	return render_to_response('maps_app/register.html')
-
+def index(request):
+	return render(request,'maps_app/index.html')
+def shared(request):
+	return render(request,'maps_app/shared.html')
+def saved(request):
+	return render(request,'maps_app/saved.html')

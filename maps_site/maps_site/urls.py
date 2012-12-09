@@ -1,7 +1,10 @@
 from django.conf.urls import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from dajaxice.core import dajaxice_autodiscover, dajaxice_config
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 admin.autodiscover()
+dajaxice_autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
@@ -12,6 +15,9 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
+     url(r'^maps/', include('maps_app.urls')),
      url(r'^register/', include('register.urls')),
      url(r'^admin/', include(admin.site.urls)),
+     url(dajaxice_config.dajaxice_url, include('dajaxice.urls'))
 )
+urlpatterns += staticfiles_urlpatterns()
