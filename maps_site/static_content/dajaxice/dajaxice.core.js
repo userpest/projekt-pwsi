@@ -9,10 +9,6 @@ var Dajaxice = {
     
     maps_app: {
     
-    request_points: function(callback_function, argv, custom_settings){
-        Dajaxice.call('maps_app.request_points', 'POST', callback_function, argv, custom_settings);
-    },
-
     move_point: function(callback_function, argv, custom_settings){
         Dajaxice.call('maps_app.move_point', 'POST', callback_function, argv, custom_settings);
     }

@@ -3,6 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from dajaxice.core import dajaxice_autodiscover, dajaxice_config
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 admin.autodiscover()
 dajaxice_autodiscover()
 

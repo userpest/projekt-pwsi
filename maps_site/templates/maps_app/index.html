@@ -1,18 +1,29 @@
-{% load dajaxice_templatetags %}
 <html>
 
-<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-<script type="text/javascript" src =" {{ STATIC_URL }}scripts/gmaps.js"></script>
-<script type="text/javascript" src =" {{ STATIC_URL }}scripts/mapnav.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	{% load dajaxice_templatetags %}
+	{% load staticfiles %}
+	{% dajaxice_js_import 'nocsrf' %}
+	<script type="text/javascript" src={% static "dajax/jquery.dajax.core.js" %}></script>
 
-	<head>
-		<title>jsmagic</title>
-	</head>
+	<script>
+	function save_coords(){
+		center = window.myMap.getCenter();
+		zoom = window.myMap.getZoom();
+		Dajaxice.maps_app.save_coords(Dajax.process,{'lat':center.lat(), 'lng':center.lng(), 'zoom':zoom})
+
+	}
+
+	</script>
+	{%load easy_maps_tags %}
 	<body>
-		<div id="the_map"></div>
-		<input type="button" value="Request Points" onclick="Dajaxice.examples.request_points(Dajax.process);">
-		<input type="text" id="example_log">
+	{% easy_map "Poland Cracow, Lojasiewicza 6" 300 400 using "maps_app/easy_maps_template.html" %}
+
+	<input type="text" value="" id="result">
+	<input type="button" onclick="Dajaxice.maps_app.randomize(Dajax.process)" value="Random!">
+	<input type="button" onclick="save_coords();" value="coords">
+
+
+	<input type="button" onclick="Dajaxice.maps_app.msg(function(d){alert(d.message);})" value="Get message from server!">
 	</body>
 </html>
-

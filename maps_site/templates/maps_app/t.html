@@ -1,0 +1,9 @@
+<html>
+
+	{% load dajaxice_templatetags %}
+	{% dajaxice_js_import 'nocsrf' %}
+
+	<body>
+	<input type="button" onclick="Dajaxice.maps_app.msg(function(d){alert(d.message);})" value="Get message from server!">
+	</body>
+</html>

@@ -143,6 +143,8 @@ INSTALLED_APPS = (
     'register',
     'maps_app',
     'dajaxice',
+    'easy_maps',
+    'dajax',
     
 )
 
