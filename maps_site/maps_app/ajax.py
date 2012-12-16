@@ -2,17 +2,9 @@ from dajax.core import Dajax
 from dajaxice.decorators import dajaxice_register 
 from django.utils import simplejson
 import random
+import maps_app
+from geopy import geocoders
 
-@dajaxice_register
-def msg(request):
-    return simplejson.dumps({'message':'Hello from Python!'})
-
-@dajaxice_register
-def randomize(request):
-	dajax = Dajax()
-	dajax.assign('#result', 'value', random.randint(1, 10))
-	dajax.alert('hhmf')
-	return dajax.json()
 
 
 #@dajaxice_register
@@ -28,4 +20,11 @@ def save_coords(request,lat,lng,zoom):
 	dajax.alert(msg)
 	return dajax.json()
 
-
+@dajaxice_register
+def go_to_location(request,addr):
+	dajax = Dajax()
+	g = geocoders.Google()
+	loc,(lat,lng) = g.geocode(addr)
+	points = {'lat':lat,'lng':lng } 
+	dajax.add_data(points,'set_location')
+	return dajax.json()

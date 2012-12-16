@@ -14,16 +14,24 @@
 
 	}
 
+	function set_location(data){
+		newLatLng = new google.maps.LatLng(data.lat,data.lng);
+		window.myMap.setCenter(newLatLng);
+		if(data.hasOwnProperty("zoom")){
+			window.myMap.setZoom(data.zoom);
+		}
+	}
+
 	</script>
 	{%load easy_maps_tags %}
 	<body>
 	{% easy_map "Poland Cracow, Lojasiewicza 6" 300 400 using "maps_app/easy_maps_template.html" %}
 
-	<input type="text" value="" id="result">
-	<input type="button" onclick="Dajaxice.maps_app.randomize(Dajax.process)" value="Random!">
+	<input type="text" value="" id="search_addr">
+	<input type="button" onclick="Dajaxice.maps_app.go_to_location(Dajax.process,{'addr':$('#search_addr').val()})" value="Go to location">
+	<input type="button" onclick="Dajaxice.maps_app.save_location(Dajax.process,{'addr':$('#search_addr').val()})" value="Save Search">
 	<input type="button" onclick="save_coords();" value="coords">
 
 
-	<input type="button" onclick="Dajaxice.maps_app.msg(function(d){alert(d.message);})" value="Get message from server!">
 	</body>
 </html>
