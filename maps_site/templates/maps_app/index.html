@@ -29,13 +29,14 @@
 
 	<input type="text" value="" id="search_addr">
 	<input type="button" onclick="Dajaxice.maps_app.go_to_location(Dajax.process,{'addr':$('#search_addr').val()})" value="Go to location">
-	<input type="button" onclick="Dajaxice.maps_app.save_location(Dajax.process,{'addr':$('#search_addr').val()})" value="Save Search">
+	<input type="button" onclick="Dajaxice.maps_app.save_location(Dajax.process,{'addr':$('#search_addr').val(), 'container':'saved_locations_container'})" value="Save Search">
 	<input type="button" onclick="save_coords();" value="coords">
 
-	{% load saved_locations %}	
-	{% for i in users_saved_locations %}
-		{% saved_location i.id %}	
-	{% endfor %}
-
+	<div id='saved_locations_container'>
+		{% load saved_locations %}	
+		{% for i in users_saved_locations %}
+			{% saved_location i.id %}	
+		{% endfor %}
+	</div>
 	</body>
 </html>

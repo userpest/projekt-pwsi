@@ -5,6 +5,7 @@ import random
 from geopy import geocoders
 from django.contrib.auth import get_user
 from models import *
+from django.template.loader import render_to_string
 
 
 #@dajaxice_register
@@ -33,7 +34,7 @@ def go_to_location(request,addr):
 	return dajax.json()
 
 @dajaxice_register
-def save_location(request,addr):
+def save_location(request,addr,container):
 	dajax = Dajax()
 	usr = get_user(request)
 	loc, (lat,lng) = get_coords(addr)	
@@ -42,6 +43,8 @@ def save_location(request,addr):
 			lng = lng,
 			addr = addr)
 	location.save()
+	location_entry = render_to_string('maps_app/saved_location_node.html',{'addr': location })
+	dajax.append('#'+str(container),'innerHTML',location_entry) 
 	return dajax.json()
 
 @dajaxice_register
