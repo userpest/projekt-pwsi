@@ -39,6 +39,37 @@ def save_location(request,addr):
 	loc, (lat,lng) = get_coords(addr)	
 	location = Address(owner =usr,
 			lat = lat ,
-			lng = lng)
+			lng = lng,
+			addr = addr)
 	location.save()
 	return dajax.json()
+
+@dajaxice_register
+def show_saved_entry(request, e_id):
+	dajax = Dajax()
+	usr = get_user(request)
+	try:
+			addr =  Address.objects.get(id=e_id, owner=usr)
+			points = { 'lat' : addr.lat, 'lng':addr.lng}
+			dajax.add_data(points,'set_location')
+
+	except Address.DoesNotExist:
+		return dajax.json()
+
+	return dajax.json()
+
+@dajaxice_register
+def remove_saved_entry(request,e_id):
+	dajax = Dajax()
+	usr = get_user(request)
+	try:
+			addr =  Address.objects.get(id=e_id, owner=usr)
+			dajax.remove('#saved_entry_'+str(addr.id))			
+			addr.delete()
+
+	except Address.DoesNotExist:
+		return dajax.json()
+
+	return dajax.json()
+
+

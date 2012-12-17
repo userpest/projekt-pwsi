@@ -32,6 +32,10 @@
 	<input type="button" onclick="Dajaxice.maps_app.save_location(Dajax.process,{'addr':$('#search_addr').val()})" value="Save Search">
 	<input type="button" onclick="save_coords();" value="coords">
 
+	{% load saved_locations %}	
+	{% for i in users_saved_locations %}
+		{% saved_location i.id %}	
+	{% endfor %}
 
 	</body>
 </html>

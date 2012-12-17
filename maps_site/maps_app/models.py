@@ -7,6 +7,7 @@ class Address(models.Model):
 	owner = models.ForeignKey(User)
 	lat = models.FloatField()
 	lng = models.FloatField()
+	addr = models.CharField(max_length=200)
 	name = models.CharField(max_length=200,blank=True)
 	comment = models.CharField(max_length=200,blank=True)
 
