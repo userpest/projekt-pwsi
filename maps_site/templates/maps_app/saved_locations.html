@@ -1,0 +1,4 @@
+{% load saved_locations %}	
+{% for i in addrs %}
+	{% saved_location i.id %}	
+{% endfor %}

@@ -9,7 +9,7 @@ from models import *
 def index(request):
 	usr = get_user(request)	
 	addrs  = Address.objects.filter(owner=usr)
-	return render(request,'maps_app/index.html', {'users_saved_locations':addrs})
+	return render(request,'maps_app/index.html', {'addrs':addrs})
 @login_required
 def shared(request):
 	return render(request,'maps_app/shared.html')

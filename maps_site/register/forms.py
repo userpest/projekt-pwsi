@@ -32,7 +32,7 @@ class RegistrationForm(forms.Form):
 	def clean_email(self):
 		#usually emails are not case sensitive
 		if User.objects.filter(email__iexact=self.cleaned_data['email']):
-				raise forms.ValidationError('This email is already in sue')
+				raise forms.ValidationError('This email is already in use')
 		return self.cleaned_data['email']
 
 	def save(self):

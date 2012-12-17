@@ -22,6 +22,13 @@
 		}
 	}
 
+	function send_form(e_id){
+		Dajax.maps_app.save_share_options(Dajax.process(),{ 
+		'e_id':e_id,
+		'form': $('#share_saved_entry_form').serialize(true)
+		});
+	}
+
 	</script>
 	{%load easy_maps_tags %}
 	<body>
@@ -33,10 +40,8 @@
 	<input type="button" onclick="save_coords();" value="coords">
 
 	<div id='saved_locations_container'>
-		{% load saved_locations %}	
-		{% for i in users_saved_locations %}
-			{% saved_location i.id %}	
-		{% endfor %}
+		{%include "maps_app/saved_locations.html" %}
+	
 	</div>
 	</body>
 </html>

@@ -7,19 +7,6 @@ var Dajaxice = {
     
 
     
-    maps_app: {
-    
-    move_point: function(callback_function, argv, custom_settings){
-        Dajaxice.call('maps_app.move_point', 'POST', callback_function, argv, custom_settings);
-    }
-
-
-    
-    
-    }
-    
-    
-,
 
     get_cookie: function(name)
     {
