@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-     url(r'^maps/', include('maps_app.urls')),
+     url(r'^$', include('maps_app.urls')),
      url(r'^accounts/', include('register.urls')),
      url(r'^admin/', include(admin.site.urls)),
      url(dajaxice_config.dajaxice_url, include('dajaxice.urls'))
