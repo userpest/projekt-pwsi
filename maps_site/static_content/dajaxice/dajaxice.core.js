@@ -7,6 +7,63 @@ var Dajaxice = {
     
 
     
+    maps_app: {
+    
+    remove_saved_entry: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.remove_saved_entry', 'POST', callback_function, argv, custom_settings);
+    },
+
+    choose_showed_locations: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.choose_showed_locations', 'POST', callback_function, argv, custom_settings);
+    },
+
+    show_shared_locations: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.show_shared_locations', 'POST', callback_function, argv, custom_settings);
+    },
+
+    delete_shared_location: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.delete_shared_location', 'POST', callback_function, argv, custom_settings);
+    },
+
+    show_shared_location: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.show_shared_location', 'POST', callback_function, argv, custom_settings);
+    },
+
+    save_location: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.save_location', 'POST', callback_function, argv, custom_settings);
+    },
+
+    save_coords: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.save_coords', 'POST', callback_function, argv, custom_settings);
+    },
+
+    share_saved_entry: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.share_saved_entry', 'POST', callback_function, argv, custom_settings);
+    },
+
+    show_saved_entry: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.show_saved_entry', 'POST', callback_function, argv, custom_settings);
+    },
+
+    go_to_location: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.go_to_location', 'POST', callback_function, argv, custom_settings);
+    },
+
+    save_share_options: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.save_share_options', 'POST', callback_function, argv, custom_settings);
+    },
+
+    show_saved_locations: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.show_saved_locations', 'POST', callback_function, argv, custom_settings);
+    }
+
+
+    
+    
+    }
+    
+    
+,
 
     get_cookie: function(name)
     {
