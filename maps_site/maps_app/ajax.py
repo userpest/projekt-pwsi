@@ -85,20 +85,32 @@ def share_saved_entry(request,container,e_id):
 	dajax.clear('#'+str(container), 'innerHTML')
 	usr = get_user(request)
 	usrs = User.objects.filter(~Q(id=usr.id))
-	form = UserList(e_id,usrs)
+	form = UserList(users = usrs)
 	html = render_to_string( 'maps_app/share_saved_entry.html', 
 			{'e_id':e_id,'form':form})
 	dajax.append('#'+str(container),'innerHTML',html) 
 	return dajax.json()
 
 @dajaxice_register
-def save_share_options(request, containter,e_id,input_form):
+def save_share_options(request, container,e_id,input_form):
 	dajax = Dajax()
-	form = UserList(e_id,deserialize_form(input_form))
-	form.save()	
-	dajax.clear('#'+str(container), 'innerHTML')
 	usr = get_user(request)
-	addr = Address.objects.get(owner=usr)
-	html = render_to_string(request,'maps_app/saved_entry_list.html',{'addr': addr})
+
+	try:
+		#we are also validating the request permissions so i think
+		#this logic should be out of the form
+
+		entry = Address.objects.get(owner=usr, id=e_id)
+		usrs = User.objects.filter(~Q(id=usr.id))
+		form = UserList(usrs,deserialize_form(input_form))
+		if form.is_valid():
+			form.save(entry)	
+
+	except Address.DoesNotExist:
+		pass
+
+	dajax.clear('#'+str(container), 'innerHTML')
+	addrs = Address.objects.filter(owner=usr)
+	html = render_to_string('maps_app/saved_locations.html',{'addrs': addrs})
 	dajax.append('#'+str(container), 'innerHTML', html)
 	return dajax.json()

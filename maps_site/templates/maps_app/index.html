@@ -23,9 +23,12 @@
 	}
 
 	function send_form(e_id){
-		Dajax.maps_app.save_share_options(Dajax.process(),{ 
+		sform = $('#share_saved_entry_form').serialize();
+		//alert(sform);
+		Dajaxice.maps_app.save_share_options( Dajax.process ,{ 
 		'e_id':e_id,
-		'form': $('#share_saved_entry_form').serialize(true)
+		'input_form': sform,
+		'container': 'share_saved_entry_form'
 		});
 	}
 
