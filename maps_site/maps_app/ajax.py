@@ -82,13 +82,30 @@ def remove_saved_entry(request,e_id):
 @dajaxice_register
 def share_saved_entry(request,container,e_id):
 	dajax = Dajax()
-	dajax.clear('#'+str(container), 'innerHTML')
 	usr = get_user(request)
 	usrs = User.objects.filter(~Q(id=usr.id))
-	form = UserList(users = usrs)
-	html = render_to_string( 'maps_app/share_saved_entry.html', 
-			{'e_id':e_id,'form':form})
-	dajax.append('#'+str(container),'innerHTML',html) 
+
+	try:
+		entry = Address.objects.get(owner=usr, id=e_id)
+		dajax.clear('#'+str(container), 'innerHTML')
+
+		shared = SharedInfo.objects.filter(addr=entry)
+		init= [] 
+
+		for i in shared:
+			init.append(i.shared_user.id)
+
+		print init
+
+		form = UserList(users = usrs, initial={'users': init})
+		html = render_to_string( 'maps_app/share_saved_entry.html', 
+				{'e_id':e_id,'form':form})
+		dajax.append('#'+str(container),'innerHTML',html) 
+
+
+	except Address.DoesNotExist:
+		print "exception"
+
 	return dajax.json()
 
 @dajaxice_register

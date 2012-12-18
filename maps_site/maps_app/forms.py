@@ -10,11 +10,14 @@ class UserList(forms.Form):
 		super(UserList, self).__init__(*args, **kwargs)
 		USERS_CHOICES = [] 
 		
+		initial = kwargs.pop('initial', {'users':()})	
+
 
 		for i in users:
 			USERS_CHOICES.append((i.id, i.username))
 
-		self.fields[u'users'] = forms.MultipleChoiceField(label = "User list",
+		self.fields[u'users'] = forms.MultipleChoiceField(initial = initial['users'], 
+				label = "User list",
 				choices = USERS_CHOICES,
 				widget = forms.widgets.CheckboxSelectMultiple(attrs=checkbox_attrs))
 		#print self.fields
