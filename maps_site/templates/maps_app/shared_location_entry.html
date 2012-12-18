@@ -1,0 +1,8 @@
+<div class='shared_entry' id='shared_entry_{{addr.id}}' >
+
+	{{addr.addr}} - {{addr.addr.owner.username }}
+	<input type="button" onclick="Dajaxice.maps_app.show_shared_location(Dajax.process,{'e_id':{{addr.id}}})" value="show">
+
+	<input type="button" onclick="Dajaxice.maps_app.delete_shared_location(Dajax.process,{'e_id':{{addr.id}}})" value="delete">
+
+</div>

@@ -42,9 +42,15 @@
 	<input type="button" onclick="Dajaxice.maps_app.save_location(Dajax.process,{'addr':$('#search_addr').val(), 'container':'saved_locations_container'})" value="Save Search">
 	<input type="button" onclick="save_coords();" value="coords">
 
+	<select onchange="Dajaxice.maps_app.choose_showed_locations(Dajax.process, {'option':this.value, 'container':'saved_locations_container'})" size="1">
+		<option value="0">Saved Locations</option>
+		<option value="1">Shared Locations</option>
+	</select>
+
+
+
 	<div id='saved_locations_container'>
 		{%include "maps_app/saved_locations.html" %}
-	
 	</div>
 	</body>
 </html>
