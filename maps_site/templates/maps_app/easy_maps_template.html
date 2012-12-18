@@ -38,14 +38,7 @@
 
             var map = new google.maps.Map(mapElem, mapOptions);
 	    window.myMap = map;
-            {% block extra_js %}
-            var marker = new google.maps.Marker({
-                position: latlng,
-                map: map,
-                title: "{{ map.address }}"
-            });
-            {% endblock %}
-        }
+	    }
 
         {% block map_loading_js %}
         // initialize the map after page loading
