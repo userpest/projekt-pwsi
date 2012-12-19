@@ -6,7 +6,8 @@ here = lambda x: os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__
 SITE_DB = here('maps-db.db')
 SITE_TEMPLATES=here('templates')
 STATIC_POS = here('static_content')
-
+MMM = here('maps_site/media')
+PROJECT_PATH=os.path.dirname(__file__)
 # Django settings for maps_site project.
 
 DEBUG = True
@@ -55,12 +56,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = MMM
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files

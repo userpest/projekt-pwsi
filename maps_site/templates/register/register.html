@@ -1,14 +1,42 @@
+{% extends "base.html" %}
+
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+
+
+<article name="register">
+<h1>Registration</h1>
 
 {% if form.errors %}
+ <ul>
 	{% for field in form %}
-		{{field.label}}
-		{{field.errors}}
-
+{% if field.errors%}
+		<li>{{field.label}}
+		{{field.errors}}</li>
+<br>
+{% endif %}
 	{% endfor %}
+ </ul>	
 {% endif %}
 
-
 <form action= "{% url register %}" method="post"> {% csrf_token %}
-{{form.as_p }}
-<input type="submit" value="Submit" />
+<table><tbody>
+{%for field in form%}
+
+<!--{% if field.errors %}<tr><h3>{{field.errors}}</h3></tr>{% endif %}-->
+
+<tr>
+
+	<td><label>{{field.label}}{{field.errors}}</label> </td>
+	<td>{{field}}</td>
+</tr>
+{%endfor%}
+</tbody></table>
+<input type="submit" value="Submit" name="send"/>
 </form>
+
+</article>
+{% endblock %}
