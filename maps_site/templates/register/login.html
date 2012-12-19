@@ -1,7 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Log In{% endblock %}
+
+{% block content %}
+
+
+
+<article name="login">
+<h1>Log In</h1>
 
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<article><h3>Your username and password didn't match. Please try again.</h3></article>
 {% endif %}
+
 
 <form method="post" action="{% url login %}">
 {% csrf_token %}
@@ -19,3 +29,5 @@
 <input type="submit" value="login" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
+</article>
+{% endblock %}

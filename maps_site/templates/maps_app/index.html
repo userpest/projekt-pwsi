@@ -1,30 +1,56 @@
-<html>
-	<a href="{% url logout%}">logout</a>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	{% load dajaxice_templatetags %}
-	{% load staticfiles %}
-	{% dajaxice_js_import 'nocsrf' %}
-	<script type="text/javascript" src={% static "dajax/jquery.dajax.core.js" %}></script>
-	<script type="text/javascript" src={% static "scripts/maps_app_helper_scripts.js"%}></script>
+{% extends "base.html" %}
+	
+	{% block title %}Maps Site{% endblock %}
+	
+	{%block scripts%}
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		{% load dajaxice_templatetags %}
+		{% load staticfiles %}
+		{% dajaxice_js_import 'nocsrf' %}
+		<script type="text/javascript" src={% static "dajax/jquery.dajax.core.js" %}></script>
+		<script type="text/javascript" src={% static "scripts/maps_app_helper_scripts.js"%}></script>
+		{%load easy_maps_tags %}
+	{% endblock %}
 
-	{%load easy_maps_tags %}
-	<body>
-	{% easy_map "Poland Cracow, Lojasiewicza 6" 300 400 using "maps_app/easy_maps_template.html" %}
+	{% block id%}id="main"{% endblock %}
+	
+	
+	{% block header %}
+	<header>
+		<!---<a href="{% url logout %}">logout</a>--->
+		
+		<input type="text" value="" id="search_addr">
+		
+		<input type="button" onclick="Dajaxice.maps_app.go_to_location(Dajax.process,{'addr':$('#search_addr').val()})" value="Go to location">
+	
+		<input type="button" onclick="Dajaxice.maps_app.save_location(Dajax.process,{'addr':$('#search_addr').val(), 'container':'saved_locations_container'})" value="Save Search">
+		
+		<input type="button" onclick="save_coords();" value="coords">
+	
+		<!--form action="{% url logout %}" method="LINK"-->
+			<input type="button" value="Log out" onclick="window.location='{% url logout %}';">
+		<!--/form-->
+		
+	</header>
+	{% endblock %}
 
-	<input type="text" value="" id="search_addr">
-	<input type="button" onclick="Dajaxice.maps_app.go_to_location(Dajax.process,{'addr':$('#search_addr').val()})" value="Go to location">
-	<input type="button" onclick="Dajaxice.maps_app.save_location(Dajax.process,{'addr':$('#search_addr').val(), 'container':'saved_locations_container'})" value="Save Search">
-	<input type="button" onclick="save_coords();" value="coords">
+	{% block sidenav %}	
+	<aside>
+		<select onchange="Dajaxice.maps_app.choose_showed_locations(Dajax.process, {'option':this.value, 'container':'saved_locations_container'})" size="1">
+			<option value="0">Saved Locations</option>
+			<option value="1">Shared Locations</option>
+		</select>
+		
+		<div id='saved_locations_container'>
+			{%include "maps_app/saved_locations.html" %}
+			
+			<a href="#" onClick="MyWindow=window.open('http://www.yahoo.com','MyWindow','toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=no,resizable=no,width=600,height=300'); return false;">Click Here</a>
+		</div>
+	</aside>
+	{% endblock %}	
+	
+	{% block content %}
+			{% easy_map "Poland Cracow, Lojasiewicza 6" 600 559 using "maps_app/easy_maps_template.html" %}
+	{% endblock %}
 
-	<select onchange="Dajaxice.maps_app.choose_showed_locations(Dajax.process, {'option':this.value, 'container':'saved_locations_container'})" size="1">
-		<option value="0">Saved Locations</option>
-		<option value="1">Shared Locations</option>
-	</select>
 
-
-
-	<div id='saved_locations_container'>
-		{%include "maps_app/saved_locations.html" %}
-	</div>
-	</body>
-</html>

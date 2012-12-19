@@ -3,6 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from dajaxice.core import dajaxice_autodiscover, dajaxice_config
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+import settings
 
 admin.autodiscover()
 dajaxice_autodiscover()
@@ -19,6 +20,7 @@ urlpatterns = patterns('',
      url(r'^$', include('maps_app.urls')),
      url(r'^accounts/', include('register.urls')),
      url(r'^admin/', include(admin.site.urls)),
-     url(dajaxice_config.dajaxice_url, include('dajaxice.urls'))
+     url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
+     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True})
 )
 urlpatterns += staticfiles_urlpatterns()
