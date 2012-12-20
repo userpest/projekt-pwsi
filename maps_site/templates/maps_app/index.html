@@ -9,6 +9,23 @@
 		{% dajaxice_js_import 'nocsrf' %}
 		<script type="text/javascript" src={% static "dajax/jquery.dajax.core.js" %}></script>
 		<script type="text/javascript" src={% static "scripts/maps_app_helper_scripts.js"%}></script>
+<script>
+
+$(document).ready(function() {	
+
+{%if markers.showShared %}
+	Dajaxice.maps_app.shared_checked(Dajax.process,{'change':0});
+{%endif%}
+
+{%if markers.showSaved %}
+	Dajaxice.maps_app.saved_checked(Dajax.process,{'change':0}); 
+{%endif%}
+
+});
+
+</script>
+
+
 		{%load easy_maps_tags %}
 	{% endblock %}
 

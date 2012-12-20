@@ -279,7 +279,14 @@ def saved_checked(request,change):
 	addrs = Address.objects.filter(owner=usr)
 	options = UsersMarkerOptions.objects.get(user=usr)
 
-	if options.showSaved==False:
+	if int(change)==1:
+		op = options.showSaved
+		options.showShared = not options.showSaved
+		options.save()
+	else:
+		op  = not options.showSaved
+
+	if op==False:
 		print "showing"	
 		for i in addrs:
 			mtitle = str(i.addr)
@@ -310,10 +317,18 @@ def shared_checked(request,change):
 	shrd =  shared.values_list('addr',flat=True)
 
 	addrs = Address.objects.filter(id__in=shrd)
+
+	if int(change)==1:
+		op = options.showShared
+		options.showShared = not options.showShared
+		options.save()
+	else:
+		op  = not options.showShared
+
 	for i in addrs:
 		print str(i.id)
 
-	if options.showShared==False:
+	if op==False:
 		print "showing"	
 		for i in addrs:
 			mtitle = str(i.addr)
@@ -330,9 +345,6 @@ def shared_checked(request,change):
 			dajax.add_data(points, 'remove_marker')
 
 
-	if int(change)==1:
-		options.showShared = not options.showShared
-		options.save()
 	return dajax.json()
 
 
