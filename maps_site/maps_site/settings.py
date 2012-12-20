@@ -6,8 +6,13 @@ here = lambda x: os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__
 SITE_DB = here('maps-db.db')
 SITE_TEMPLATES=here('templates')
 STATIC_POS = here('static_content')
+
 MMM = here('maps_site/media')
 PROJECT_PATH=os.path.dirname(__file__)
+
+LOGIN_REDIRECT_URL='/'
+
+
 # Django settings for maps_site project.
 
 DEBUG = True
