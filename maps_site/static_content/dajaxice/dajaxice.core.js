@@ -21,8 +21,16 @@ var Dajaxice = {
         Dajaxice.call('maps_app.show_shared_locations', 'POST', callback_function, argv, custom_settings);
     },
 
+    saved_checked: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.saved_checked', 'POST', callback_function, argv, custom_settings);
+    },
+
     delete_shared_location: function(callback_function, argv, custom_settings){
         Dajaxice.call('maps_app.delete_shared_location', 'POST', callback_function, argv, custom_settings);
+    },
+
+    save_coords: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.save_coords', 'POST', callback_function, argv, custom_settings);
     },
 
     show_shared_location: function(callback_function, argv, custom_settings){
@@ -33,8 +41,8 @@ var Dajaxice = {
         Dajaxice.call('maps_app.save_location', 'POST', callback_function, argv, custom_settings);
     },
 
-    save_coords: function(callback_function, argv, custom_settings){
-        Dajaxice.call('maps_app.save_coords', 'POST', callback_function, argv, custom_settings);
+    shared_checked: function(callback_function, argv, custom_settings){
+        Dajaxice.call('maps_app.shared_checked', 'POST', callback_function, argv, custom_settings);
     },
 
     share_saved_entry: function(callback_function, argv, custom_settings){

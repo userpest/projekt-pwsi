@@ -2,8 +2,12 @@ from django import forms
 from models import SharedInfo,Address
 from django.contrib.auth.models import User
 from django.forms.fields import Field, FileField
+from models import *
 
 checkbox_attrs = { 'class' : 'user_list_checkbox' }
+
+saved_attrs = {'onclick' : 'Dajaxice.maps_app.saved_checked(Dajax.process,{\'change\':1})'  } 
+shared_attrs = { 'onclick': 'Dajaxice.maps_app.shared_checked(Dajax.process,{\'change\':1})' } 
 
 class UserList(forms.Form):
 	def __init__(self, users,*args, **kwargs):
@@ -46,4 +50,12 @@ class UserList(forms.Form):
 			SharedInfo.objects.create(addr=entry, shared_user = usr)
 
 			
-
+class MarkersForm(forms.Form):
+	showShared = forms.BooleanField(label = "show shared entries markers",
+			widget = forms.widgets.CheckboxInput(
+					attrs = shared_attrs)
+					) 
+	showSaved =forms.BooleanField( label = "show saved entries markers", 
+			widget = forms.widgets.CheckboxInput(
+					attrs = saved_attrs)
+			)

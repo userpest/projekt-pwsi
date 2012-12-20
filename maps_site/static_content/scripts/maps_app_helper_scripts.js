@@ -23,4 +23,22 @@ function send_form(e_id){
 	});
 }
 
+var markers = {} ;
+function add_marker(data){
+	newLatLng = new google.maps.LatLng(data.lat,data.lng);
+	mtitle = data.comment;
+	marker = new google.maps.Marker({
+		position : newLatLng,
+		title : mtitle,
+		map: window.myMap
+	})
+	marker_id = data.marker_id;
+	markers[marker_id]=marker;
 
+}
+
+function remove_marker(data){
+	marker_id = data.marker_id;	
+	markers[marker_id].setMap(null);
+	delete markers[marker_id];
+}
