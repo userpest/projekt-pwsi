@@ -1,7 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Log In{% endblock %}
 
+
+
+{% block scripts %}
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
+<script>
+
+$(document).ready(function() {	
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+	//select all the a tag with name equal to modal
+	$(document).ready(function() {
+		//Cancel the link behavior
+		
+		
+		//Get the A tag
+		var id ="#dialog";
+	
+		//Get the screen height and width
+		var maskHeight = $(document).height();
+		var maskWidth = $(window).width();
+	
+		//Set heigth and width to mask to fill up the whole screen
+		$('#mask').css({'width':maskWidth,'height':maskHeight});
+		
+		//transition effect		
+		$('#mask').fadeIn(1000);	
+		$('#mask').fadeTo("slow",0.8);	
+	
+		//Get the window height and width
+		var winH = $(window).height();
+		var winW = $(window).width();
+              
+		//Set the popup window to center
+		$(id).css('top',  winH/2-$(id).height()/2);
+		$(id).css('left', winW/2-$(id).width()/2);
+	
+		//transition effect
+		$(id).fadeIn(2000); 
+	
+	});
+	
+	//if close button is clicked
+	$('.window .close').click(function (e) {
+		//Cancel the link behavior
+		e.preventDefault();
+		
+		$('#mask').hide();
+		$('.window').hide();
+	});		
+	
+	//if mask is clicked
+	$('#mask').click(function () {
+		$(this).hide();
+		$('.window').hide();
+	});			
+
+	$(window).resize(function () {
+	 
+ 		var box = $('#boxes .window');
+ 
+        //Get the screen height and width
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+      
+        //Set height and width to mask to fill up the whole screen
+        $('#mask').css({'width':maskWidth,'height':maskHeight});
+               
+        //Get the window height and width
+        var winH = $(window).height();
+        var winW = $(window).width();
+
+        //Set the popup window to center
+        box.css('top',  winH/2 - box.height()/2);
+        box.css('left', winW/2 - box.width()/2);
+	 
+	});
+{% endif %}	
+});
+
+</script>
+{% endblock %}
+
+{% block content %}
+<article name="login">
+<h1>Log In</h1>
+
+
 
 <form method="post" action="{% url login %}">
 {% csrf_token %}
@@ -19,3 +104,23 @@
 <input type="submit" value="login" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
+</article>
+
+
+<article id="invisible">
+
+
+<div id="boxes">
+<div id="dialog" class="window">
+{% if form.errors %}
+	 your username and password didnt match
+{% endif %}
+<div id="closement"><a href="#"class="close"/>Close it</a></div>
+
+
+</div>
+  <!-- Mask to cover the whole screen -->
+  <div id="mask"></div>
+</div>
+</article>
+{% endblock %}
