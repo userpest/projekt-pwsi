@@ -47,6 +47,13 @@ def save_location(request,addr,container):
 			lng = lng,
 			addr = addr)
 	location.save()
+
+	markers =UsersMarkerOptions.objects.get(user=usr)
+	print markers.window
+	if markers.window != 0:
+		return dajax.json()
+
+
 	location_entry = render_to_string('maps_app/saved_location_node.html',{'addr': location })
 
 	options = UsersMarkerOptions.objects.get(user=usr)
@@ -248,13 +255,22 @@ def show_marker_options(request,container):
 
 @dajaxice_register
 def choose_showed_locations(request, option, container):
+	usr = get_user(request)
+	markers =UsersMarkerOptions.objects.get(user=usr)
 
 	if int(option) == 0:
-		return saved_loc_show(request,container)
+		markers.window=0 
+		ret =  saved_loc_show(request,container)
 	elif int(option) == 1: 
-		return shared_loc_show(request, container)
+		markers.window=1
+		ret = shared_loc_show(request, container)
 	elif int(option) == 2:
-		return show_marker_options(request,container)
+		markers.window=2
+		ret = show_marker_options(request,container)
+
+	markers.save()
+	print markers.window
+	return ret
 
 @dajaxice_register
 def saved_checked(request,change):

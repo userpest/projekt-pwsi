@@ -37,3 +37,4 @@ class UsersMarkerOptions(models.Model):
 	user = models.OneToOneField(User,primary_key=True)
 	showShared = models.NullBooleanField( default = True )
 	showSaved = models.NullBooleanField(  default  = True )
+	window = models.IntegerField(default = 0 )
