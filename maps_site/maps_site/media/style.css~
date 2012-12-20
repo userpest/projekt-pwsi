@@ -1,0 +1,227 @@
+body
+{
+  background:#F5F4EF;
+}
+
+container
+{
+  vertical-align:middle;
+}
+
+container[id="main"]
+{
+  height:600px;
+  width:800px;
+  background:white;
+  border-radius: 10px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:20px;
+  display:block;
+  border-width: 1px;
+  border-color: #DED4BB;
+  border-style: solid;
+}
+
+article
+{
+  display:block;
+  background:#DED4BB;
+  width: 350px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+  border-radius:10px;
+}
+
+article h1
+{
+  text-align: center;
+  margin-left:auto;
+  margin-right:auto;
+  margin:0;
+  font-size: 3em;
+  text-shadow: 5px 2px 10px #182019;
+  color: #A68B47;
+}
+
+article h3
+{
+  text-align: left;
+  padding-left:10px;
+  font-size:12px;
+  font-weight:normal;
+}
+
+article[name="login"]
+{
+  top:20%;
+  left:50%;
+  margin-left:-175px;
+  position:absolute;
+}
+
+article[name="register"]
+{ 
+  top:20%;
+  left:50%;
+  margin-left:-175px;
+  position:absolute;
+}
+
+input[type="button"]
+{
+	background:#DED4BB;
+}
+
+hr
+{
+	color:#DED4BB;
+	background-color:#DED4BB;
+}
+
+header
+{
+  height:40px;
+  border-bottom-style:solid;
+  border-width:1px;
+  border-color: #DED4BB;
+}
+
+header input[type="button"]
+{
+  width:110px;
+  margin-left:5px;
+  height:30px;
+  
+}
+
+header input[type="text"]
+{
+  width:320px;
+  margin-left:5px;
+}
+
+aside
+{
+  display:block;
+  background: white;
+  border-left-style:solid;
+  border-width:1px;
+  border-color: #DED4BB;
+  float:right;
+  height:559px;
+  width:198px;
+}
+
+aside input[type="button"]
+{
+	 width:50px;
+	 font-size:10px;
+	 float:left;
+	margin:2px;
+}
+
+aside div b
+{
+	width:196px;
+}
+
+/**/
+ul[class="user_list_chekbox"]
+{
+	font-size:10px;
+}
+
+
+form ul li
+{
+	font-size:10px;
+}
+/**/
+
+select
+{
+  margin-right:5px;
+  margin-top:5px;
+  position:relative;
+  float:right;
+  width:189px;
+}
+
+div[id="map-canvas-1"]
+{
+  
+}
+
+form
+{
+  border: none;
+  
+  margin-left: auto;
+  margin-right: auto;
+}
+
+label
+{
+ width: 140px;
+ color: white;
+ font-size: 1.5em;
+ text-shadow: 2px 2px 3px #182019; 
+ color: #A68B47;
+ float: left;
+ margin-top: 5px;
+ margin-left:15px;
+}
+
+input
+{
+ width: 170px;
+ height: 23px;
+ float: left;
+ border-radius: 7px;
+ margin-top: 5px;
+ -webkit-transition: 1s;
+ -moz-transition: 1s;
+}
+
+aside div form ul
+{
+	list-style-type:none;
+	
+}
+
+aside div form ul li label
+{
+	
+	text-shadow: 0px 0px 0px white;
+}
+
+input[name="users"]
+{
+	width:10px;
+	height:10px;
+}
+
+input[type="submit"]
+{
+ width: 100px;
+ height: 40px;
+ background: #A68B47;
+ border: none;
+ color:white;
+ font-size: 20px;
+ text-shadow: 5px 5px 20px #182019;
+ margin-top:5px;
+ margin-left:15px;
+ margin-right:0; 
+ position:relative;
+ bottom: 0px;
+ margin-bottom:10px;
+}
+
+input[name="send"]:hover
+{
+  border: 2px solid #002EE6;
+}
